@@ -12,6 +12,7 @@ html, body {
     padding: 0;
     background-color: var(--brand-white);
     color: var(--brand-black);
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 body {
@@ -45,8 +46,26 @@ body {
 
 .color {
     height: 100%;
-    background-color: orange;
     align-self: stretch;
     flex-basis: 100%;
     text-align: center;
+}
+
+.white-text {
+    color: #FFFFFF;
+}
+
+.black-text {
+    color: #000000;
+}
+
+.color-label {
+}
+
+
+/* -- COLOR SCHEME MODE DROPDOWN MENU --*/
+
+.dropdown-btn {
+    background-color: var(--brand-white);
+    
 }
