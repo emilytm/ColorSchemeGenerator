@@ -1,6 +1,13 @@
 
 const colorControls = document.getElementById('controls')
 
+document.addEventListener('click', (e) => {
+    console.log(e.target)
+    if (e.target.id === 'dropdown-btn'){
+        document.getElementById('mode-dropdown').classList.toggle('show')
+    }
+})
+
 colorControls.addEventListener('submit',(e) => {
     console.log(e)
     e.preventDefault()
@@ -10,7 +17,7 @@ colorControls.addEventListener('submit',(e) => {
 })
 
 function getColorScheme(seedColor, schemeMode){
-    fetch(`https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${schemeMode})
+    fetch(`https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${schemeMode}`)
     .then(res => res.json())
     .then(data => {
         console.log(data)

@@ -12,7 +12,7 @@ html, body {
     padding: 0;
     background-color: var(--brand-white);
     color: var(--brand-black);
-    font-family: 'Inter', Arial, sans-serif;
+    font-family: 'Inter', Arial, Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -67,5 +67,29 @@ body {
 
 .dropdown-btn {
     background-color: var(--brand-white);
-    
+    height: 2.625em;
+    border: 1px solid var(--light-accent);
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 19em;
+    z-index: 1;
+}
+
+.dropdown p {
+    padding: .75em 1em;
+    display: block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.show {
+    display: block;
 }
