@@ -200,3 +200,11 @@ input::-webkit-inner-spin-button {
     width: 1.5em;
     height: 1.5em;
 }
+
+.white {
+    color: #FFFFFF;
+}
+
+.black {
+    color: #000000;
+}

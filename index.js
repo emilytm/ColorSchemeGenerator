@@ -30,44 +30,54 @@ function getColorScheme(seedColor, schemeMode, colorCount){
     fetch(`https://www.thecolorapi.com/scheme?hex=${seedColor.slice(1)}&mode=${schemeMode}&count=${colorCount}`)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         let colors = data.colors
         let colorPanelHtml = ""
-        console.log(colors)
         colors.forEach(color => {
-            colorPanelHtml += getColorHtml(color)
-            checkContrast('FFFFFF',color.hex.value)
-            checkContrast('000000',color.hex.value)
+            let hexCode = color.hex.value.slice(1)
+            let whiteRatio = parseInt(checkContrast(hexCode,'FFFFFF'))
+            let blackRatio = parseInt(checkContrast(hexCode,'000000'))
+
+            console.log(whiteRatio,"   ",blackRatio)
+            
+            colorPanelHtml += getColorHtml(hexCode, whiteRatio >= 4.5 ? true : false, blackRatio >= 4.5 ? true : false,  whiteRatio >=  blackRatio ? 'white' : 'black')
         });
         document.getElementById('colors').innerHTML = colorPanelHtml
     })
-
 }
 
 
 
 
-function getColorHtml(color) {
+function getColorHtml(colorHex, whiteResult, blackResult, bestColor) {
 
-    const hex = color.hex.value
-    
+    const pass = `<i class="fa-solid fa-check"></i>`
+    const fail = `<i class="fa-solid fa-x"></i>`
+
+    console.log(`
+        color is ${colorHex}
+        wResult is ${whiteResult}
+        bResult is ${blackResult}
+        bestColor is ${bestColor}
+    `)
+
     return `
-        <div class="color" style="background-color: ${hex};">
-            <p class="color-label white-text">${hex}</p>
-            <p class="color-label black-text">${hex}</p>
-            <svg class="copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z"/></svg>
+        <div class="color" style="background-color: #${colorHex};">
+            <p class="color-label white-text">#${colorHex} ${whiteResult ? pass : fail}</p>
+            <p class="color-label black-text">#${colorHex} ${blackResult ? pass : fail}</p>
+            <svg class="copy-icon ${bestColor}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z"/></svg>
         </div>
     `
 }
 
-//get ratio
-//get passfail
+function checkContrast(color,background) {
 
-function checkContrast(background, foreground) {
-    console.log(background)
-    console.log(foreground)
-    fetch(`https://webaim.org/resources/contrastchecker/?fcolor=${foreground.slice(1)}&bcolor=${background}&api`)
+    
+    return fetch(`https://webaim.org/resources/contrastchecker/?fcolor=${color.slice(1)}&bcolor=${background}&api`)
     .then(res => res.json())
-    .then(pass => console.log(pass))
+    .then(data => {
+        return data.ratio
+    })
 }
+
+//if i didn't get pass fail and i just got the ratio, i could say if it is less than 4.5 do this
 
