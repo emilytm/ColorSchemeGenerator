@@ -19,12 +19,12 @@ colorControls.addEventListener('submit',(e) => {
     console.log(e)
     e.preventDefault()
     let seedColor = document.getElementById('color-picker').value
-    //GET COLOR SCHEME MODE FROM DROPDOWN MENU
-    getColorScheme(seedColor, schemeMode)
+    getColorScheme(seedColor, currentMode)
 })
 
 function getColorScheme(seedColor, schemeMode){
-    fetch(`https://www.thecolorapi.com/scheme?hex=${seedColor}&mode=${schemeMode}`)
+    console.log('seedColor is: '+seedColor.slice(1)+' and schemeMode is: '+schemeMode)
+    fetch(`https://www.thecolorapi.com/scheme?hex=${seedColor.slice(1)}&mode=${schemeMode}`)
     .then(res => res.json())
     .then(data => {
         console.log(data)
