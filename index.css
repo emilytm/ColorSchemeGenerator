@@ -27,13 +27,11 @@ body {
 
 .control-panel {
     height: 5.625em;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
+    display: grid;
+    grid-template-columns: 7em 2fr 1.2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "colorpicker modepicker getschemebtn";
     align-items: center;
-}
-.control-panel * {
-    margin: 1.5em
 }
 
 .colors-panel {
@@ -65,13 +63,38 @@ body {
 
 /* -- COLOR SCHEME MODE DROPDOWN MENU --*/
 
+form input {
+    min-width: 6em;
+    min-height: 4em;
+    grid-area: colorpicker;
+    margin-left: 1em;
+}
+
 .dropdown-btn {
+    grid-area: modepicker;
     background-color: var(--brand-white);
-    height: 2.625em;
     border: 1px solid var(--light-accent);
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
     cursor: pointer;
-    line-height: 1em;
+    height: 100%;
+    padding: 1em;
+    border-radius: .25em;
+}
+
+.dropdown-btn:hover {
+    border: 1px solid var(--dark-accent);
+}
+
+.dropdown-btn:active {
+    background-color: var(--light-accent);
+}
+
+.dropdown-btn p{
+    margin: 0;
+    margin-inline: 0;
+    margin-block: 0;
+    line-height: 1.315em;
+    padding: 1em;
+    height: 100%;
 }
 
 .dropdown-content {
@@ -79,15 +102,24 @@ body {
     position: absolute;
     min-width: 19em;
     z-index: 1;
+    background-color: var(--brand-white);
+    margin: 0;
 }
 
 .dropdown p {
     padding: .75em 1em;
     display: block;
+    margin: 0;
+    margin-inline: 0;
+    margin-block: 0;
 }
 
 .dropdown p:hover {
     background-color: var(--light-accent);
+}
+
+.dropdown p:active {
+    font-weight: bolder;
 }
 
 .dropdown {
@@ -101,5 +133,26 @@ body {
 
 .current-mode {
     font-weight: bolder;
+    background-color: #cfeafe;
+}
+
+button {
+    grid-area: getschemebtn;
+    font-family: 'Inter', Arial, Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    padding: 1em;
+    margin-right: 1em;
+    margin-left: 1em;
+    border: 1px solid var(--light-accent);
+    background-color: var(--brand-white);
+    border-radius: .25em;
+}
+
+button:hover {
+    background-color: var(--light-accent);
+    border: 1px solid var(--dark-accent);
+}
+
+button:active {
     background-color: #cfeafe;
 }

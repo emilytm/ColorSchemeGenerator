@@ -4,7 +4,7 @@ let currentMode = 'monochrome'
 
 document.addEventListener('click', (e) => {
     console.log(e.target)
-    if (e.target.id === 'dropdown-btn'){
+    if (e.target.dataset.btn){
         document.getElementById('mode-dropdown').classList.toggle('show')
     } else if (e.target.classList.contains('mode-option')){
         document.getElementById(currentMode).classList.remove('current-mode')
