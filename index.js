@@ -1,10 +1,17 @@
 
 const colorControls = document.getElementById('controls')
+let currentMode = 'monochrome'
 
 document.addEventListener('click', (e) => {
     console.log(e.target)
     if (e.target.id === 'dropdown-btn'){
         document.getElementById('mode-dropdown').classList.toggle('show')
+    } else if (e.target.classList.contains('mode-option')){
+        document.getElementById(currentMode).classList.remove('current-mode')
+        currentMode = e.target.id
+        document.getElementById('mode-dropdown').classList.toggle('show')
+        document.getElementById(e.target.id).classList.add('current-mode')
+        document.getElementById('dropdown-btn').textContent = document.getElementById(e.target.id).textContent
     }
 })
 

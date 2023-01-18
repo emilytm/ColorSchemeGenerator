@@ -85,6 +85,10 @@ body {
     display: block;
 }
 
+.dropdown p:hover {
+    background-color: var(--light-accent);
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -92,4 +96,9 @@ body {
 
 .show {
     display: block;
+}
+
+.current-mode {
+    font-weight: bolder;
+    background-color: #cfeafe;
 }
