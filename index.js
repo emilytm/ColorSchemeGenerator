@@ -38,17 +38,16 @@ function getColorScheme(seedColor, schemeMode){
     })
 }
 
-
-
-
 function getColorHtml(color) {
 
     const hex = color.hex.value
     
     return `
         <div class="color" style="background-color: ${hex};">
-            <p class="color-label white-text">${hex}</p>
-            <p class="color-label black-text">${hex}</p>
+            <div class="labels">
+                <p class="color-label white-text">${hex}</p>
+                <p class="color-label black-text">${hex}</p>
+            </div>
         </div>
     `
 }
