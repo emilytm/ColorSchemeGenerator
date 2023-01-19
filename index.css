@@ -60,7 +60,9 @@ body {
 }
 
 .labels {
-
+    margin-top: 2em;
+    font-weight: bolder;
+    cursor: pointer;
 }
 
 
