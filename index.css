@@ -209,8 +209,44 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+/* -- MOBILE FORMATTING -- */
+
 @media (max-width: 480px) {
-    
+
+    h1 {
+        font-size: 1em;
+        margin-left: .25em;
+        padding-left: .25em;
+    }
+
+    /* Control Panel Updates */
+
+    .count-picker {
+        text-align:center;
+    }
+
+    .count-picker-label {
+        font-size: .75em;
+        text-align: center;
+    }
+
+    .dropdown-btn p{
+        font-size: .8em;
+        line-height: .8em;
+    }
+
+    button {
+        font-size: .8em;
+        padding: .8em;
+    }
+
+    .color-picker {
+        width: 1em;
+        height: 1em;
+    }
+
+    /* Color Panel Updates */
+
     .colors-panel {
         display: flex;
         flex-direction: column;
@@ -219,31 +255,7 @@ input::-webkit-inner-spin-button {
         flex-wrap: nowrap;
     }
 
-    .count-picker {
-        text-align:center;
-    }
-    .count-picker-label {
-        font-size: .75em;
-        text-align: center;
-    }
-    .dropdown-btn p{
-        font-size: .8em;
-        line-height: .8em;
-    }
-    button {
-        font-size: .8em;
-        padding: .8em;
-    }
-    .color-picker {
-        width: 1em;
-        height: 1em;
-    }
-    h1 {
-        font-size: 1em;
-        margin-left: .25em;
-    }
     .labels {
         margin-top: .6em;
     }
-
 }
