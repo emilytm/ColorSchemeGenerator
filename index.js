@@ -1,6 +1,7 @@
 
 const colorControls = document.getElementById('controls')
 let currentMode = 'monochrome'
+let colorScheme = []
 
 document.addEventListener('click', (e) => {
     console.log(e.target)
@@ -34,8 +35,14 @@ function getColorScheme(seedColor, schemeMode, colorCount){
         let colorPanelHtml = ""
         colors.forEach(color => {
             let hexCode = color.hex.value.slice(1)
-            let whiteRatio = checkContrast(hexCode,'FFFFFF')
-            let blackRatio = checkContrast(hexCode,'000000')
+            colorScheme.push({
+                hex: hexCode,
+                whiteRatio: '',
+                blackRatio: ''
+            })
+            getRatios(colorScheme)
+            let whiteRatio = checkContrast(hexCode,'FFFFFF',returnRatio)
+            let blackRatio = checkContrast(hexCode,'000000',returnRatio)
 
             console.log(whiteRatio,"   ",blackRatio)
             console.log(parseInt(whiteRatio),"   ",parseInt(blackRatio))
@@ -46,6 +53,17 @@ function getColorScheme(seedColor, schemeMode, colorCount){
     })
 }
 
+function getRatios(colorScheme) {
+    colorScheme.forEach(colorObject => {
+        colorObject.whiteRatio = getContrast(colorObject.hex,'FFFFFF')
+        colorObject.blackRatio = getContrast(colorObject.hex,'000000')
+        console.log(colorScheme)
+    })
+}
+
+function getContrast(hex,background){
+    
+}
 
 
 
@@ -70,6 +88,21 @@ function getColorHtml(colorHex, whiteResult, blackResult, bestColor) {
     `
 }
 
+function checkContrast(color, background, callback){
+    fetch(`https://webaim.org/resources/contrastchecker/?fcolor=${color.slice(1)}&bcolor=${background}&api`)
+    .then(res => res.json())
+    .then(data => {
+        callback(data.ratio)
+    })
+}
+
+function returnRatio(ratio){
+    console.log('ratio is '+ratio)
+}
+
+
+
+/*
 function checkContrast(color,background) {
 
     let bloop = fetch(`https://webaim.org/resources/contrastchecker/?fcolor=${color.slice(1)}&bcolor=${background}&api`)
@@ -80,7 +113,7 @@ function checkContrast(color,background) {
     })
     console.log(bloop)
     return bloop
-}
+}*/
 
 //if i didn't get pass fail and i just got the ratio, i could say if it is less than 4.5 do this
 /*
