@@ -6,6 +6,7 @@
     --brand-black: #142C3E;
 }
 
+/* -- GENERAL PAGE FORMATTING -- */
 
 html, body {
     margin: 0;
@@ -21,10 +22,13 @@ body {
     margin-left: auto;
     margin-right: auto;  
 }
+
 .app-area {
     border: 1px solid var(--light-accent);
     border-radius: 4px;
 }
+
+/* -- CONTROL PANEL FORMATTING -- */
 
 .control-panel {
     height: 5.625em;
@@ -35,37 +39,6 @@ body {
     grid-template-areas: "colorpicker modepicker countpicker getschemebtn";
     align-items: center;
 }
-
-.colors-panel {
-    display: flex;
-    flex-direction: row;
-    height: 40em;
-    align-items: stretch;
-    flex-wrap: nowrap;
-}
-
-.color {
-    height: 100%;
-    align-self: stretch;
-    flex-basis: 100%;
-    text-align: center;
-}
-
-.white-text {
-    color: #FFFFFF;
-}
-
-.black-text {
-    color: #000000;
-}
-
-.labels {
-    margin-top: 2em;
-    font-weight: bolder;
-    cursor: pointer;
-}
-
-
 /* -- COLOR SCHEME MODE DROPDOWN MENU --*/
 
 .color-picker {
@@ -132,33 +105,12 @@ body {
     display: inline-block;
 }
 
-.show {
-    display: block;
-}
-
 .current-mode {
     font-weight: bolder;
     background-color: #cfeafe;
 }
 
-button {
-    grid-area: getschemebtn;
-    font-family: 'Inter', Arial, Arial, Helvetica, sans-serif;
-    font-size: 1em;
-    padding: 1em;
-    margin-right: 1em;
-    border: 1px solid var(--light-accent);
-    background-color: var(--brand-white);
-}
-
-button:hover {
-    background-color: var(--light-accent);
-    border: 1px solid var(--dark-accent);
-}
-
-button:active {
-    background-color: #cfeafe;
-}
+/*-- COLOR COUNT INPUT BOX FORMATTING --*/
 
 .count-picker {
     font-size: 1em;
@@ -183,18 +135,96 @@ button:active {
     font-size: .75em;
 }
 
-.rounded-corners{
-    border-radius: .25em;
-}
-
 .count-picker-label {
     grid-area: countpicker;
 }
 
+/*-- GO BUTTON FORMATTING --*/
 
+button {
+    grid-area: getschemebtn;
+    font-family: 'Inter', Arial, Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    padding: 1em;
+    margin-right: 1em;
+    border: 1px solid var(--light-accent);
+    background-color: var(--brand-white);
+}
+
+button:hover {
+    background-color: var(--light-accent);
+    border: 1px solid var(--dark-accent);
+}
+
+button:active {
+    background-color: #cfeafe;
+}
+
+/* -- COLOR PANEL + COMPONENT PARTS FORMATTING -- */
+
+.colors-panel {
+    display: flex;
+    flex-direction: row;
+    height: 40em;
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+.color {
+    height: 100%;
+    align-self: stretch;
+    flex-basis: 100%;
+    text-align: center;
+}
+
+
+.labels {
+    margin-top: 2em;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+
+/*-- UTILITIES --*/
+
+.white-text {
+    color: #FFFFFF;
+}
+
+.black-text {
+    color: #000000;
+}
+
+.rounded-corners{
+    border-radius: .25em;
+}
+
+.show {
+    display: block;
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+@media (max-width: 480px) {
+    
+    .colors-panel {
+        display: flex;
+        flex-direction: column;
+        height: 75vh;
+        align-items: stretch;
+        flex-wrap: nowrap;
+    }
+
+    .count-picker {
+        text-align:center;
+    }
+    .count-picker-label {
+        font-size: .75em;
+        text-align: center;
+    }
+
 }
