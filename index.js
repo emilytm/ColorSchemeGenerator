@@ -3,7 +3,12 @@ const colorControls = document.getElementById('controls')
 let currentMode = 'monochrome'
 
 document.addEventListener('click', (e) => {
-    if (e.target.dataset.btn){
+    if(e.target.id === 'get-scheme-btn'){
+        e.preventDefault()
+        let seedColor = document.getElementById('color-picker').value
+        let colorCount = document.getElementById('count-picker').value
+        getColorScheme(seedColor, currentMode, colorCount)
+    } else if (e.target.dataset.btn){
         document.getElementById('mode-dropdown').classList.toggle('show')
     } else if (e.target.classList.contains('mode-option')){
         document.getElementById(currentMode).classList.remove('current-mode')
@@ -19,13 +24,6 @@ document.addEventListener('click', (e) => {
             e.target.textContent = hexCode
         }, 750)
     }
-})
-
-colorControls.addEventListener('submit',(e) => {
-    e.preventDefault()
-    let seedColor = document.getElementById('color-picker').value
-    let colorCount = document.getElementById('count-picker').value
-    getColorScheme(seedColor, currentMode, colorCount)
 })
 
 function getColorScheme(seedColor, schemeMode, colorCount){
