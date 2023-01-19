@@ -235,8 +235,11 @@ input::-webkit-inner-spin-button {
         padding: .8em;
     }
     .color-picker {
-        width: auto;
-        height: auto;
+        width: 1em;
+        height: 1em;
+    }
+    h1 {
+        font-size: smaller;
     }
 
 }
