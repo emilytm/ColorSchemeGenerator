@@ -34,10 +34,11 @@ function getColorScheme(seedColor, schemeMode, colorCount){
         let colorPanelHtml = ""
         colors.forEach(color => {
             let hexCode = color.hex.value.slice(1)
-            let whiteRatio = parseInt(checkContrast(hexCode,'FFFFFF'))
-            let blackRatio = parseInt(checkContrast(hexCode,'000000'))
+            let whiteRatio = checkContrast(hexCode,'FFFFFF')
+            let blackRatio = checkContrast(hexCode,'000000')
 
             console.log(whiteRatio,"   ",blackRatio)
+            console.log(parseInt(whiteRatio),"   ",parseInt(blackRatio))
             
             colorPanelHtml += getColorHtml(hexCode, whiteRatio >= 4.5 ? true : false, blackRatio >= 4.5 ? true : false,  whiteRatio >=  blackRatio ? 'white' : 'black')
         });
@@ -71,13 +72,29 @@ function getColorHtml(colorHex, whiteResult, blackResult, bestColor) {
 
 function checkContrast(color,background) {
 
-    
-    return fetch(`https://webaim.org/resources/contrastchecker/?fcolor=${color.slice(1)}&bcolor=${background}&api`)
+    let bloop = fetch(`https://webaim.org/resources/contrastchecker/?fcolor=${color.slice(1)}&bcolor=${background}&api`)
     .then(res => res.json())
     .then(data => {
+        console.log(data.ratio)
         return data.ratio
     })
+    console.log(bloop)
+    return bloop
 }
 
 //if i didn't get pass fail and i just got the ratio, i could say if it is less than 4.5 do this
-
+/*
+function checkCon(callback) {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        callback(data);
+      });
+  }
+  
+  function reutrnRatio(data) {
+    console.log(data);
+  }
+  
+checkCon(returnRatio);
+  */
