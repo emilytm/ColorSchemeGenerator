@@ -1,6 +1,8 @@
 # ColorSchemeGenerator
 
-This app started as part of the 'Working with APIs' module in Scrimba's Front-end Developer Career Path. We were given requirements and designs. I added some styling and functionality to meet reach goals and get extra practice.
+This color scheme generator app was created as the solo project for the 'Working with APIs' module of the Scrimba Front End Developer Career Path. The goal was to use a color scheme generator API to build an app that would take various inputs and generate appropriate color schemes accordingly. This was my first project with APIs since college and my first introduction to async/await. Design and functionality requirements are from Scrimba.
+
+**Next steps:** Incorporate accessibility check API and add more customization within generated palettes.
 
 See this project live [here](https://frabjous-sunshine-9b15fc.netlify.app/).
 
